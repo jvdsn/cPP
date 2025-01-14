@@ -828,12 +828,12 @@ FCS_COP.1.1/KeyedHash:: The TSF shall perform [_keyed hash message authenticatio
 |[selection: ISO/IEC 9797-2:2021 (Section 9 "MAC Algorithm 4"), NIST SP 800-185 (Section 4 "KMAC")]
 
 |KMACXOF128
-|128 bits	
-|[selection: ISO/IEC 9797-2:2021, (Section 9 "MAC Algorithm 4"), NIST SP 800-185, (Section 4 "KMAC")]
+|128 bits
+|[selection: ISO/IEC 9797-2:2021 (Section 9 "MAC Algorithm 4"), NIST SP 800-185 (Section 4 "KMAC")]
 
 |KMACXOF256
 |256 bits
-|[selection: ISO/IEC 9797-2:2021, (Section 9 "MAC Algorithm 4"), NIST SP 800-185, (Section 4 "KMAC")]
+|[selection: ISO/IEC 9797-2:2021 (Section 9 "MAC Algorithm 4"), NIST SP 800-185 (Section 4 "KMAC")]
 
 |===
 
