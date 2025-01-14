@@ -2560,19 +2560,21 @@ NIST SP 800-108 Rev. 1 (Section 4.3) [KDF in Double-Pipeline Iteration Mode] [se
 |[selection: 128, 192, 256] bits 
 |N/A
 
-|KDF-HASH 
-|Shared secret
-|Hash function from FCS_COP.1/Hash 
+|KDA-HASH-1S
+|Shared secret, output length, fixed information
+|Hash function from FCS_COP.1/Hash as H
 |[selection: 128, 192, 256] bits 
 |NIST SP 800-56C Rev. 2 (Section 4, Option 1)
 
-|KDF-MAC-1S
+|KDA-MAC-1S
 |Shared secret, salt, output length, fixed information 
-|Keyed Hash function from FCS_COP.1/KeyedHash
+|[selection: HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-512, KMAC128, KMAC256] as H
 |[selection: 128, 192, 256] bits 
 |NIST SP 800-56C Rev. 2 (Section 4, Options 2, 3)
 
-|KDF-MAC-2S 
+[selection: ISO/IEC 9797-1:2011 (CMAC), NIST SP 800-38B (CMAC), ISO/IEC 18033-3:2010 (AES), FIPS PUB 197 (AES), ISO/IEC 9797-2:2021 (HMAC), FIPS PUB 198-1 (HMAC), ISO/IEC 10118-3:2018 (SHA), FIPS PUB 180-4 (SHA)]
+
+|KDA-MAC-2S
 |Shared secret, salt, IV, output length, fixed information 
 |[MAC Step]
 
@@ -2597,15 +2599,15 @@ NIST SP 800-108 Rev. 1 (Section 4.3) [KDF in Double-Pipeline Iteration Mode] [se
 
 _Application Note {counter:remark_count}_:: _There are no standards that specify how to derive a key from two keys using XOR (KDF-XOR) or encryption (KDF-ENC). If KDF-XOR is selected, the ST Author should describe this method in the documentation. If KDF-ENC is selected, the ST Author should document the encryption algorithm used from FCS_COP.1/AEAD or FCS_COP.1/SKC, and which of the inputs is the plaintext and which is the key._
 +
-_In KDF-MAC-2S, if a CMAC is selected in the MAC step, then select AES-128-CMAC in the KDF step and select 128 as the output key size. If HMAC is selected in the MAC step, then select the same HMAC in the KDF._
+_In KDA-MAC-2S, if a CMAC is selected in the MAC step, then select AES-128-CMAC in the KDF step and select 128 as the output key size. If HMAC is selected in the MAC step, then select the same HMAC in the KDF._
 +
 _Under input parameters, if concatenated keys or intermediary keys is selected, the ST Author should describe the sources of the keys, and the order in which they are concatenated, along with any other values that are concatenated with them. This option may be chosen in instances when input keying material for the KDF comes from two independent sources, for example, a client and a server._
 +
 _If deriving a symmetric key, select any of the above rows._
 +
-_If deriving an initialization vector, an authentication secret, HMAC key, or KMAC key, select KDF-CTR, KDF-FB, KDF-DPI, KDF-HASH, KDF-XOR, or KDF-ENC._
+_If deriving an initialization vector, an authentication secret, HMAC key, or KMAC key, select KDF-CTR, KDF-FB, KDF-DPI, KDA-HASH-1S, KDF-XOR, or KDF-ENC._
 +
-_If deriving a secret IV or seed, select KDF-HASH, KDF-MAC-1S, or KDF-MAC-2S._
+_If deriving a secret IV or seed, select KDA-HASH-1S, KDA-MAC-1S, or KDA-MAC-2S._
 
 ==== FCS_CKM_EXT.8 Password-Based Key Derivation
 
