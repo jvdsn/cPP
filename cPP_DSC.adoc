@@ -2513,40 +2513,48 @@ FCS_CKM.5.1:: The TSF shall derive cryptographic keys [*selection*: _key type_] 
 |List of Standards
 
 |KDF-CTR 
-|[selection: Direct Generation from a Random Bit Generator as specified in FCS_RBG.1, Concatenated keys]
+|Input key(s), label, context, output length
 |KPF2 - KDF in Counter Mode using [selection: AES-128-CMAC, AES-192-CMAC, AES-256-CMAC, CMAC-HIGHT-128, CMAC-LEA-128, CMAC-LEA-256, CMAC-SEED-128, HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-512] as the PRF
 |[selection: 128, 192, 256] bits 
-|ISO/IEC 11770-6:2016 (subclause 7.3.2) [KPF2]
+|ISO/IEC 11770-6:2016 (subclause 7.3.2) [KPF2], NIST SP 800-108 Rev. 1 (Section 4.1) [KDF in Counter Mode]
 
-NIST SP 800-108 Rev. 1 (Section 4.1) [KDF in Counter Mode] [selection: ISO/IEC 9797-1:2011 (CMAC), NIST SP 800-38B (CMAC)] [selection: ISO/IEC 18033-3:2010 (AES), FIPS PUB 197 (AES), ISO/IEC 18033-3:2010 (subclause 4.5) [HIGHT], ISO/IEC 29192-2:2019 (subclause 6.3) [LEA], ISO/IEC 18033-3:2010 (subclause 5.4) [SEED]],
+[selection: ISO/IEC 9797-1:2011 (CMAC), NIST SP 800-38B (CMAC)] [selection: ISO/IEC 18033-3:2010 (AES), FIPS PUB 197 (AES), ISO/IEC 18033-3:2010 (subclause 4.5) [HIGHT], ISO/IEC 29192-2:2019 (subclause 6.3) [LEA], ISO/IEC 18033-3:2010 (subclause 5.4) [SEED]],
 
 [selection: ISO/IEC 9797-2:2021 (HMAC), FIPS PUB 198-1 (HMAC)],
 
 [selection: ISO/IEC 10118-3:2018 (SHA), FIPS PUB 180-4 (SHA)]
 
 |KDF-FB
-|[selection: Direct Generation from a Random Bit Generator as specified in FCS_RBG.1, Concatenated keys]
+|Input key(s), label, context, IV, output length
 |KPF3 - KDF in Feedback Mode using [selection: AES-128-CMAC, AES-192-CMAC, AES-256-CMAC, CMAC-HIGHT-128, CMAC-LEA-128, CMAC-LEA-256, CMAC-SEED-128, HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-512] as the PRF
 |[selection: 128, 192, 256] bits 
-|ISO/IEC 11770-6:2016 (subclause 7.3.3) [KPF3]
+|ISO/IEC 11770-6:2016 (subclause 7.3.3) [KPF3], NIST SP 800-108 Rev. 1 (Section 4.2) [KDF in Feedback Mode]
 
-NIST SP 800-108 Rev. 1 (Section 4.2) [KDF in Feedback Mode] [selection: ISO/IEC 9797-1:2011 (CMAC), NIST SP 800-38B (CMAC)] [selection: ISO/IEC 18033-3:2010 (AES), FIPS PUB 197 (AES), ISO/IEC 18033-3:2010 (subclause 4.5) [HIGHT], ISO/IEC 29192-2:2019 (subclause 6.3) [LEA], ISO/IEC 18033-3:2010 (subclause 5.4) [SEED]],
+[selection: ISO/IEC 9797-1:2011 (CMAC), NIST SP 800-38B (CMAC)] [selection: ISO/IEC 18033-3:2010 (AES), FIPS PUB 197 (AES), ISO/IEC 18033-3:2010 (subclause 4.5) [HIGHT], ISO/IEC 29192-2:2019 (subclause 6.3) [LEA], ISO/IEC 18033-3:2010 (subclause 5.4) [SEED]],
 
 [selection: ISO/IEC 9797-2:2021 (HMAC), FIPS PUB 198-1 (HMAC)],
 
 [selection: ISO/IEC 10118-3:2018 (SHA), FIPS PUB 180-4 (SHA)]
 
 |KDF-DPI 
-|[selection: Direct Generation from a Random Bit Generator as specified in FCS_RBG.1, Concatenated keys]
+|Input key(s), label, context, output length
 |KPF4 - KDF in Double-Pipeline Iteration Mode using [selection: AES-128-CMAC, AES-192-CMAC, AES-256-CMAC, CMAC-HIGHT-128, CMAC-LEA-128, CMAC-LEA-256, CMAC-SEED-128, HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-512] as the PRF
 |[selection: 128, 192, 256] bits 
-|ISO/IEC 11770-6:2016 (subclause 7.3.4) [KPF4]
+|ISO/IEC 11770-6:2016 (subclause 7.3.4) [KPF4], NIST SP 800-108 Rev. 1 (Section 4.3) [KDF in Double-Pipeline Iteration Mode]
 
-NIST SP 800-108 Rev. 1 (Section 4.3) [KDF in Double-Pipeline Iteration Mode] [selection: ISO/IEC 9797-1:2011 (CMAC), NIST SP 800-38B (CMAC)] [selection: ISO/IEC 18033-3:2010 (AES), FIPS PUB 197 (AES), ISO/IEC 18033-3:2010 (subclause 4.5) [HIGHT], ISO/IEC 29192-2:2019 (subclause 6.3) [LEA], ISO/IEC 18033-3:2010 (subclause 5.4) [SEED]],
+[selection: ISO/IEC 9797-1:2011 (CMAC), NIST SP 800-38B (CMAC)] [selection: ISO/IEC 18033-3:2010 (AES), FIPS PUB 197 (AES), ISO/IEC 18033-3:2010 (subclause 4.5) [HIGHT], ISO/IEC 29192-2:2019 (subclause 6.3) [LEA], ISO/IEC 18033-3:2010 (subclause 5.4) [SEED]],
 
 [selection: ISO/IEC 9797-2:2021 (HMAC), FIPS PUB 198-1 (HMAC)],
 
 [selection: ISO/IEC 10118-3:2018 (SHA), FIPS PUB 180-4 (SHA)]
+
+|KDF-KMAC
+|Input key(s), label, context, output length
+|[selection: KMAC128, KMAC256]
+|[selection: 128, 192, 256] bits
+|NIST SP 800-108 Rev. 1 (Section 4.4) [KDF Using KMAC]
+
+[selection: ISO/IEC 9797-2:2021 (Section 9 "MAC Algorithm 4"); NIST SP 800-185 (Section 4 "KMAC")]
 
 |KDF-XOR
 |More than one intermediary keys
@@ -2586,12 +2594,6 @@ NIST SP 800-108 Rev. 1 (Section 4.3) [KDF in Double-Pipeline Iteration Mode] [se
 |NIST SP 800-56C Rev. 2 (Section 5)
 
 [selection: ISO/IEC 9797-1:2011 (CMAC), NIST SP 800-38B (CMAC), ISO/IEC 18033-3:2010 (AES), FIPS PUB 197 (AES), ISO/IEC 9797-2:2021 (HMAC), FIPS PUB 198-1 (HMAC), ISO/IEC 10118-3:2018 (SHA), FIPS PUB 180-4 (SHA)] 
-
-|KDF-KMAC
-|See NIST 800-108 Rev. 1, Section 4.4
-|[selection: KMAC128, KMAC256]
-|[selection: 128, 256] bits
-|[selection: ISO/IEC 9797-2:2021 (Section 9 "MAC Algorithm 4"); NIST SP 800-185 (Section 4 "KMAC")]
 
 |===
 
