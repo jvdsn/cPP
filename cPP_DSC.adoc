@@ -2600,12 +2600,6 @@ _Application Note {counter:remark_count}_:: _There are no standards that specify
 _In KDF-MAC-2S, if a CMAC is selected in the MAC step, then select AES-128-CMAC in the KDF step and select 128 as the output key size. If HMAC is selected in the MAC step, then select the same HMAC in the KDF._
 +
 _Under input parameters, if concatenated keys or intermediary keys is selected, the ST Author should describe the sources of the keys, and the order in which they are concatenated, along with any other values that are concatenated with them. This option may be chosen in instances when input keying material for the KDF comes from two independent sources, for example, a client and a server._
-+
-_If deriving a symmetric key, select any of the above rows._
-+
-_If deriving an initialization vector, an authentication secret, HMAC key, or KMAC key, select KDF-CTR, KDF-FB, KDF-DPI, KDF-HASH, KDF-XOR, or KDF-ENC._
-+
-_If deriving a secret IV or seed, select KDF-HASH, KDF-MAC-1S, or KDF-MAC-2S._
 
 ==== FCS_CKM_EXT.8 Password-Based Key Derivation
 
