@@ -774,18 +774,18 @@ FCS_COP.1.1/Hash:: The TSF shall perform [_cryptographic hashing_] in accordance
 
 _Application Note {counter:remark_count}_:: _The hash selection should be consistent with the overall strength of the algorithm used for signature generation. For example, the TOE should choose SHA-256 for 2048-bit RSA or ECC with P-256; SHA-384 for 3072-bit RSA, 4096-bit RSA, or ECC with P-384; and SHA-512 for ECC with P-521. The ST author selects the standard based on the algorithms selected. SHA-1 may be used as a general hash function and for the following applications: generating and verifying hash-based message authentication codes (HMACs), key derivation functions (KDFs), and random bit/number generation. SHA-1 may also be used for verifying old digital signatures and time stamps, if this is explicitly allowed by the application domain. SHA-1 should not be used in applications in which collision resistance is needed._
 
-==== FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash)
+==== FCS_COP.1/MAC Cryptographic Operation (Message Authentication)
 
-FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash)
+FCS_COP.1/MAC Cryptographic Operation (Message Authentication)
 
-FCS_COP.1.1/KeyedHash:: The TSF shall perform [_keyed hash message authentication_] in accordance with a specified cryptographic algorithm [*selection*: _keyed hash algorithm_] and cryptographic *algorithm parameters* [*selection*: _cryptographic algorithm parameters_] that meet the following: [*selection*: _list of standards_].
+FCS_COP.1.1/MAC:: The TSF shall perform [_message authentication_] in accordance with a specified cryptographic algorithm [*selection*: _MAC algorithm_] and cryptographic *algorithm parameters* [*selection*: _cryptographic algorithm parameters_] that meet the following: [*selection*: _list of standards_].
 
-.Keyed Hash
-[[KeyedHashAlgorithms]]
+.MAC
+[[MACAlgorithms]]
 [cols=".^1,.^1,.^3",options=header]
 |===
 
-|Keyed Hash Algorithm 
+|MAC Algorithm
 |Cryptographic Algorithm Parameters 
 |List of Standards
 
@@ -834,6 +834,10 @@ FCS_COP.1.1/KeyedHash:: The TSF shall perform [_keyed hash message authenticatio
 |KMACXOF256
 |256 bits
 |[selection: ISO/IEC 9797-2:2021 (Section 9 "MAC Algorithm 4"), NIST SP 800-185 (Section 4 "KMAC")]
+
+|AES-CMAC
+|[selection: 128 bits, 192 bits, 256 bits]
+|[selection: ISO/IEC 9797-1:2011 sub clause 7.6 (CMAC) and ISO/IEC 18033-3:2010 sub clause 5.2 (AES), NIST SP 800-38B (CMAC) and NIST FIPS 197 (AES)]
 
 |===
 
@@ -1393,7 +1397,7 @@ FDP_ITC_EXT.1 Parsing of SDEs
 
 FDP_ITC_EXT.1.1:: The TSF shall support importing SDEs using [*selection*: _physically protected channels as specified in FTP_ITP_EXT.1, encrypted data buffers as specified in FTP_ITE_EXT.1, cryptographically protected data channels as specified in FTP_ITC_EXT.1_].
 
-FDP_ITC_EXT.1.2:: The TSF shall verify the integrity of the SDE using [*selection*: _message authentication code as specified in FCS_COP.1/CMAC, cryptographic hash as specified in FCS_COP.1/Hash, keyed hash as specified in FCS_COP.1/KeyedHash, key wrap encryption algorithm as specified in FCS_COP.1/KeyWrap, authenticated encryption algorithm as specified in FCS_COP.1/AEAD, digital signature as specified in FCS_COP.1/SigVer, integrity verification supported by FDP_ITC_EXT.1.1_].
+FDP_ITC_EXT.1.2:: The TSF shall verify the integrity of the SDE using [*selection*: _cryptographic hash as specified in FCS_COP.1/Hash, message authentication code as specified in FCS_COP.1/MAC, key wrap encryption algorithm as specified in FCS_COP.1/KeyWrap, authenticated encryption algorithm as specified in FCS_COP.1/AEAD, digital signature as specified in FCS_COP.1/SigVer, integrity verification supported by FDP_ITC_EXT.1.1_].
 
 FDP_ITC_EXT.1.3:: The TSF shall ignore any security attributes associated with the user data when imported from outside the TOE.
 
@@ -1409,7 +1413,7 @@ FDP_ITC_EXT.2 Parsing of SDOs
 
 FDP_ITC_EXT.2.1:: The TSF shall support importing SDOs using [*selection*: _physically protected channels as specified in FTP_ITP_EXT.1, encrypted data buffers as specified in FTP_ITE_EXT.1, cryptographically protected data channels as specified in FTP_ITC_EXT.1_].
 
-FDP_ITC_EXT.2.2:: The TSF shall verify the integrity of the SDO using [*selection*: _message authentication code as specified in FCS_COP.1/CMAC, cryptographic hash as specified in FCS_COP.1/Hash, keyed hash as specified in FCS_COP.1/KeyedHash, key wrap encryption algorithm as specified in FCS_COP.1/KeyWrap, authenticated encryption algorithm as specified in FCS_COP.1/AEAD, digital signature as specified in FCS_COP.1/SigVer, integrity verification supported by FDP_ITC_EXT.2.1_].
+FDP_ITC_EXT.2.2:: The TSF shall verify the integrity of the SDO using [*selection*: _cryptographic hash as specified in FCS_COP.1/Hash, message authentication code as specified in FCS_COP.1/MAC, key wrap encryption algorithm as specified in FCS_COP.1/KeyWrap, authenticated encryption algorithm as specified in FCS_COP.1/AEAD, digital signature as specified in FCS_COP.1/SigVer, integrity verification supported by FDP_ITC_EXT.2.1_].
 
 FDP_ITC_EXT.2.3:: The TSF shall use the security attributes associated with the imported user data.
 
@@ -1446,7 +1450,7 @@ _Application Note {counter:remark_count}_:: _This SFR applies to SDOs with the c
 
 FDP_SDI.2 Stored Data Integrity Monitoring and Action
 
-FDP_SDI.2.1:: The TSF shall monitor *SDOs and SDEs* controlled by the TSF for [_integrity errors_] on all objects, based on the following attributes: [*selection*: _[assignment: attribute associated with presence in protected storage], message authentication code as specified in FCS_COP.1/CMAC, cryptographic hash as specified in FCS_COP.1/Hash, keyed hash as specified in FCS_COP.1/KeyedHash, digital signature as specified in FCS_COP.1/SigVer, key wrap encryption algorithm as specified in FCS_COP.1/KeyWrap, authenticated encryption algorithm as specified in FCS_COP.1/AEAD_].
+FDP_SDI.2.1:: The TSF shall monitor *SDOs and SDEs* controlled by the TSF for [_integrity errors_] on all objects, based on the following attributes: [*selection*: _[assignment: attribute associated with presence in protected storage], cryptographic hash as specified in FCS_COP.1/Hash, message authentication code as specified in FCS_COP.1/MAC, digital signature as specified in FCS_COP.1/SigVer, key wrap encryption algorithm as specified in FCS_COP.1/KeyWrap, authenticated encryption algorithm as specified in FCS_COP.1/AEAD_].
 
 FDP_SDI.2.2:: Upon detection of a data integrity error, the TSF shall [
 +
@@ -1457,7 +1461,7 @@ _Application Note {counter:remark_count}_:: _This SFR deals with the mechanism t
 +
 _The cryptographic requirements for cryptographic hashes and digital signatures apply here._
 +
-_No specific requirement is placed here on the nature of the integrity protection data, but the Security Target shall describe this protection measure, and shall identify the iteration of FCS_COP.1/CMAC, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_COP.1/KeyVer, FCS_COP.1/KeyWrap or FCS_COP.1/AEAD that covers any cryptographic algorithm used._
+_No specific requirement is placed here on the nature of the integrity protection data, but the Security Target shall describe this protection measure, and shall identify the iteration of FCS_COP.1/Hash, FCS_COP.1/MAC, FCS_COP.1/SigVer, FCS_COP.1/KeyWrap or FCS_COP.1/AEAD that covers any cryptographic algorithm used._
 +
 _The integrity protection data in FDP_SDI.2.1 is included in the list of attributes identified in FMT_MSA.1, and protects the value of the SDEs and of the SDO security attributes._
 +
@@ -1994,11 +1998,11 @@ The following rationale provides justification for each security problem definit
 |FTP_ITP_EXT.1 (selection-based)
 |This requirement defines a physically protected channel that the TSF can use to securely parse data being imported into it.
 
-.9+|T.WEAK_ELEMENT_BINDING
+.8+|T.WEAK_ELEMENT_BINDING
 |FCS_COP.1/Hash
 |This requirement provides a cryptographic operation for asserting the integrity of SDOs.
 
-|FCS_COP.1/KeyedHash
+|FCS_COP.1/MAC
 |This requirement provides a cryptographic operation for asserting the authenticity of SDOs.
 
 |FCS_COP.1/SigGen
@@ -2015,9 +2019,6 @@ The following rationale provides justification for each security problem definit
 
 |FPT_PRO_EXT.2 (optional)
 |This requirement ensures that the TSF can measure the integrity of its stored data.
-
-|FCS_COP.1/CMAC (selection-based)
-|This requirement provides a cryptographic operation for asserting the authenticity of SDOs.
 
 |FPT_FLS.1/FW (selection-based)
 |This requirement requires the TSF to take action to preserve its secure operation if any violations to its firmware integrity are detected.
@@ -2076,8 +2077,8 @@ The following rationale provides justification for each security problem definit
 |FCS_COP.1/Hash 
 |This requirement ensures the use of strong hash mechanisms.
 
-|FCS_COP.1/KeyedHash 
-|This requirement ensures the use of strong HMAC mechanisms.
+|FCS_COP.1/MAC
+|This requirement ensures the use of strong MAC mechanisms.
 
 |FCS_COP.1/SigGen 
 |This requirement ensures the use of strong digital signature services.
@@ -2125,10 +2126,7 @@ The following rationale provides justification for each security problem definit
 |FCS_CKM.5 (selection-based)
 |This requirement ensures the use of strong mechanisms to perform key derivation.
 
-.6+|T.WEAK_CRYPTO
-|FCS_COP.1/CMAC (selection-based)
-|This requirement ensures the use of strong methods to perform CMAC.
-
+.5+|T.WEAK_CRYPTO
 |FCS_COP.1/KeyEncap (selection-based)
 |This requirement ensures the use of strong methods to perform key encapsulation.
 
@@ -2693,12 +2691,6 @@ FCS_COP.1.1/AEAD:: The TSF shall perform [_authenticated encryption with associa
 
 |===
 
-==== FCS_COP.1/CMAC Cryptographic Operation (CMAC)
-
-FCS_COP.1/CMAC Cryptographic Operation (CMAC)
-
-FCS_COP.1.1/CMAC:: The TSF shall perform [_CMAC_] in accordance with a specified cryptographic algorithm [_AES-CMAC_] and cryptographic key sizes [*selection*: _128 bits, 192 bits, 256 bits_] that meet the following: [*selection*: _ISO/IEC 9797-1:2011 sub clause 7.6 (CMAC) and ISO/IEC 18033-3:2010 sub clause 5.2 (AES), NIST SP 800-38B (CMAC) and NIST FIPS 197 (AES)_].
-
 ==== FCS_COP.1/KeyEncap Cryptographic Operation (Key Encapsulation)
 
 FCS_COP.1/KeyEncap Cryptographic Operation (Key Encapsulation)
@@ -2829,7 +2821,7 @@ _Verifying the integrity of the firmware could be accomplished by guaranteeing t
 +
 _This requirement covers the case of ensuring the firmware is trustworthy in immutable form or mutable through any firmware updates, since the integrity and authenticity are checked prior to execution._
 +
-_FCS_COP.1/SigVer applies if the TOE provides the capability to update the TOE firmware and uses digital signatures for update verification. FCS_COP.1/CMAC or FCS_COP.1/KeyedHash applies if the TOE provides the capability to update the TOE firmware and uses MAC verification for update verification. The ST author should choose the algorithm implemented to perform digital signatures or MAC verification. For the algorithms chosen, the ST author should make the appropriate assignments/selections to specify the parameters that are implemented for that algorithm._
+_FCS_COP.1/SigVer applies if the TOE provides the capability to update the TOE firmware and uses digital signatures for update verification. FCS_COP.1/MAC applies if the TOE provides the capability to update the TOE firmware and uses MAC verification for update verification. The ST author should choose the algorithm implemented to perform digital signatures or MAC verification. For the algorithms chosen, the ST author should make the appropriate assignments/selections to specify the parameters that are implemented for that algorithm._
 
 ==== FPT_MFW_EXT.3 Firmware Authentication with Identity of Guarantor
 
@@ -3059,8 +3051,7 @@ Hierarchical to:: No other components.
 
 Dependencies:: [FCS_CKM.2 Cryptographic key distribution, or +
 FCS_CKM_EXT.7 Cryptographic Key Agreement] +
-FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash) +
-FCS_CKM.6 Timing and event of cryptographic key destruction 
+FCS_CKM.6 Timing and event of cryptographic key destruction
 
 [vertical]
 FCS_CKM_EXT.8.1:: The TSF shall perform password-based key derivation functions in accordance with a specified cryptographic algorithm HMAC-[selection: _SHA-256, SHA-384, SHA-512_], with iteration count of [assignment: _number of iterations_] using a randomly generated salt of length {empty}[selection: _128, [assignment: greater than 128]_] and output cryptographic key sizes {empty}[selection: _128, 192, 256 [assignment: greater than 128]_] bits that meet the following: [assignment: _list of standards_].
@@ -4008,7 +3999,7 @@ FCS_CKM.6 - included
 |No dependencies.
 |There are no keys involved with hashing, so no cryptograhpic key-based dependencies are necessary.
 
-|FCS_COP.1/KeyedHash 
+|FCS_COP.1/MAC
 |[FDP_ITC.1, FDP_ITC.2, FCS_CKM.1, FCS_CKM.5, FCS_CKM_EXT.7 or FCS_CKM_EXT.8] 
 
 FCS_CKM.6 
@@ -4395,14 +4386,10 @@ FCS_CKM.6 - included
 |FCS_CKM_EXT.8 
 |[FCS_CKM.2 or FCS_CKM_EXT.7]
 
-FCS_COP.1/KeyedHash
-
 FCS_CKM.6 
 |FCS_CKM.2 - included
 
 FCS_CKM_EXT.7 - included
-
-FCS_COP.1/KeyedHash - included
 
 FCS_CKM.6 - included
 
@@ -4427,25 +4414,6 @@ FCS_CKM_EXT.8 - (selection-based SFR) included
 FCS_CKM.6 - included
 
 FCS_OTV_EXT.1 - included
-
-|FCS_COP.1/CMAC
-|[FDP_ITC.1, FDP_ITC.2, FCS_CKM.1, FCS_CKM.5, FCS_CKM_EXT.7 or FCS_CKM_EXT.8]
-
-FCS_CKM.6
-
-|FDP_ITC.1 is satisfied by FDP_ITC_EXT.1 related to a mechanism by which key data can be imported into the TSF - included
-
-FDP_ITC.2 is satisfied by FDP_ITC_EXT.2 related to a mechanism by which key data can be imported into the TSF - included
-
-FCS_CKM.1 - included
-
-FCS_CKM.5 - (selection-based SFR) included
-
-FCS_CKM_EXT.7 - included
-
-FCS_CKM_EXT.8 - (selection-based SFR) included
-
-FCS_CKM.6 - included
 
 |FCS_COP.1/KeyEncap
 |[FDP_ITC.1, FDP_ITC.2, FCS_CKM.1, FCS_CKM.5, FCS_CKM_EXT.7, or FCS_CKM_EXT.8]
@@ -4576,7 +4544,7 @@ a|[cols=".^1,3",options=noheader,grid="none",frame="none"]
 
 !FCS_COP.1/Hash !Cryptographic Operation (Hashing)
 
-!FCS_COP.1/KeyedHash !Cryptographic Operation (Keyed Hash)
+!FCS_COP.1/MAC !Cryptographic Operation (Message Authentication)
 
 !FCS_COP.1/KeyEncap !Cryptographic Operation (Key Encapsulation)
 
@@ -4616,7 +4584,7 @@ a|[cols=".^1,3",options=noheader,grid="none",frame="none"]
 
 !FCS_COP.1/Hash !Cryptographic Operation (Hashing)
 
-!FCS_COP.1/KeyedHash !Cryptographic Operation (Keyed Hash)
+!FCS_COP.1/MAC !Cryptographic Operation (Message Authentication)
 
 !FCS_COP.1/SKC !Cryptographic Operation (Symmetric-Key Cryptography)
 
@@ -4654,7 +4622,7 @@ a|[cols=".^1,3",options=noheader,grid="none",frame="none"]
 
 !FCS_COP.1/Hash !Cryptographic Operation (Hashing)
 
-!FCS_COP.1/KeyedHash !Cryptographic Operation (Keyed Hash)
+!FCS_COP.1/MAC !Cryptographic Operation (Message Authentication)
 
 !FCS_COP.1/SKC !Cryptographic Operation (Symmetric-Key Cryptography)
 
@@ -4696,7 +4664,7 @@ a|[cols=".^1,3",options=noheader,grid="none",frame="none"]
 
 !FCS_COP.1/Hash !Cryptographic Operation (Hashing)
 
-!FCS_COP.1/KeyedHash !Cryptographic Operation (Keyed Hash)
+!FCS_COP.1/MAC !Cryptographic Operation (Message Authentication)
 
 !FCS_COP.1/KeyEnc !Cryptographic Operation (Key Encryption)
 
@@ -4746,7 +4714,7 @@ a|[cols=".^1,3",options=noheader,grid="none",frame="none"]
 
 !FCS_COP.1/Hash !Cryptographic Operation (Hashing)
 
-!FCS_COP.1/KeyedHash !Cryptographic Operation (Keyed Hash)
+!FCS_COP.1/MAC !Cryptographic Operation (Message Authentication)
 
 !FCS_RBG.1 !Random Bit Generation (RBG)
 
@@ -4790,7 +4758,7 @@ a|[cols=".^1,3",options=noheader,grid="none",frame="none"]
 
 !FCS_COP.1/Hash !Cryptographic Operation (Hashing)
 
-!FCS_COP.1/KeyedHash !Cryptographic Operation (Keyed Hash)
+!FCS_COP.1/MAC !Cryptographic Operation (Message Authentication)
 
 !FCS_COP.1/KeyEnc !Cryptographic Operation (Key Encryption)
 
