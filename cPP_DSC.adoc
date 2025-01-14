@@ -736,7 +736,7 @@ FCS_CKM_EXT.7.1:: The TSF shall derive shared cryptographic keys with input from
 |[selection: ANSI X9.63, IEEE 1363a, ISO/IEC 18033-2 Part 2, SECG SEC1 sec 5.1]
 
 |KAS-KDF
-|[selection: KDF-CTR, KDF-FB, KDF-DPI] with concatenated keys as input using [selection: AES-128-CMAC; AES-192-CMAC; AES-256-CMAC, HMAC-SHA-1; HMAC-SHA-256; HMAC-SHA-512] as the PRF.
+|[selection: KDF-CTR, KDF-FB, KDF-DPI] with concatenated keys as input using [selection: CMAC, HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-512] as the PRF.
 |[selection: 128, 192, 256] bits
 |NIST SP 800-108 Rev. 1 (Section 4) [KDF]
 
@@ -2514,7 +2514,7 @@ FCS_CKM.5.1:: The TSF shall derive cryptographic keys [*selection*: _key type_] 
 
 |KDF-CTR 
 |[selection: Direct Generation from a Random Bit Generator as specified in FCS_RBG.1, Concatenated keys]
-|KPF2 - KDF in Counter Mode using [selection: AES-128-CMAC, AES-192-CMAC, AES-256-CMAC, CMAC-HIGHT-128, CMAC-LEA-128, CMAC-LEA-256, CMAC-SEED-128, HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-512] as the PRF
+|KPF2 - KDF in Counter Mode using [selection: AES-CMAC, HIGHT-CMAC, LEA-CMAC, SEED-CMAC, HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-512] as the PRF
 |[selection: 128, 192, 256] bits 
 |ISO/IEC 11770-6:2016 (subclause 7.3.2) [KPF2]
 
@@ -2526,7 +2526,7 @@ NIST SP 800-108 Rev. 1 (Section 4.1) [KDF in Counter Mode] [selection: ISO/IEC 9
 
 |KDF-FB
 |[selection: Direct Generation from a Random Bit Generator as specified in FCS_RBG.1, Concatenated keys]
-|KPF3 - KDF in Feedback Mode using [selection: AES-128-CMAC, AES-192-CMAC, AES-256-CMAC, CMAC-HIGHT-128, CMAC-LEA-128, CMAC-LEA-256, CMAC-SEED-128, HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-512] as the PRF
+|KPF3 - KDF in Feedback Mode using [selection: AES-CMAC, HIGHT-CMAC, LEA-CMAC, SEED-CMAC, HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-512] as the PRF
 |[selection: 128, 192, 256] bits 
 |ISO/IEC 11770-6:2016 (subclause 7.3.3) [KPF3]
 
@@ -2538,7 +2538,7 @@ NIST SP 800-108 Rev. 1 (Section 4.2) [KDF in Feedback Mode] [selection: ISO/IEC 
 
 |KDF-DPI 
 |[selection: Direct Generation from a Random Bit Generator as specified in FCS_RBG.1, Concatenated keys]
-|KPF4 - KDF in Double-Pipeline Iteration Mode using [selection: AES-128-CMAC, AES-192-CMAC, AES-256-CMAC, CMAC-HIGHT-128, CMAC-LEA-128, CMAC-LEA-256, CMAC-SEED-128, HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-512] as the PRF
+|KPF4 - KDF in Double-Pipeline Iteration Mode using [selection: AES-CMAC, HIGHT-CMAC, LEA-CMAC, SEED-CMAC, HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-512] as the PRF
 |[selection: 128, 192, 256] bits 
 |ISO/IEC 11770-6:2016 (subclause 7.3.4) [KPF4]
 
@@ -2576,11 +2576,11 @@ NIST SP 800-108 Rev. 1 (Section 4.3) [KDF in Double-Pipeline Iteration Mode] [se
 |Shared secret, salt, IV, output length, fixed information 
 |[MAC Step]
 
-[selection: AES-128-CMAC, AES-192-CMAC, AES-256-CMAC, HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-512] as the MAC and;
+[selection: CMAC, HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-512] as the MAC and;
 
 [KDF Step] 
 
-[selection: KDF-CTR, KDF-FB, KDF-DPI] using [selection: AES-128-CMAC, AES-192-CMAC, AES-256-CMAC, HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-512] as PRF
+[selection: KDF-CTR, KDF-FB, KDF-DPI] using [selection: AES-128-CMAC, HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-512] as PRF
 
 |[selection: 128, 192, 256] bits 
 |NIST SP 800-56C Rev. 2 (Section 5)
@@ -2597,7 +2597,7 @@ NIST SP 800-108 Rev. 1 (Section 4.3) [KDF in Double-Pipeline Iteration Mode] [se
 
 _Application Note {counter:remark_count}_:: _There are no standards that specify how to derive a key from two keys using XOR (KDF-XOR) or encryption (KDF-ENC). If KDF-XOR is selected, the ST Author should describe this method in the documentation. If KDF-ENC is selected, the ST Author should document the encryption algorithm used from FCS_COP.1/AEAD or FCS_COP.1/SKC, and which of the inputs is the plaintext and which is the key._
 +
-_In KDF-MAC-2S, if a CMAC is selected in the MAC step, then select AES-128-CMAC in the KDF step and select 128 as the output key size. If HMAC is selected in the MAC step, then select the same HMAC in the KDF._
+_In KDF-MAC-2S, if CMAC is selected in the MAC step, then select AES-128-CMAC in the KDF step and select 128 as the output key size. If HMAC is selected in the MAC step, then select the same HMAC in the KDF._
 +
 _Under input parameters, if concatenated keys or intermediary keys is selected, the ST Author should describe the sources of the keys, and the order in which they are concatenated, along with any other values that are concatenated with them. This option may be chosen in instances when input keying material for the KDF comes from two independent sources, for example, a client and a server._
 +
